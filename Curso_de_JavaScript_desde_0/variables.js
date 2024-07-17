@@ -44,3 +44,17 @@ function cambioNombre(objeto){
 cambioNombre(lenguajes)
 console.log(lenguajesProgramacion)      // Dado que si tiene mutabilidad, al cambiar el valor
                                         // en la funcion va a cambiar tambien fuera de ella
+
+// Paso por referencia
+let frutas = {
+    naranja: "🍊"
+}
+let vegetales = frutas
+vegetales.naranja = "🥦"
+console.log(frutas)
+
+let ropa = {
+    blusa: '👚'
+}
+ropa.pantalon = '👖'
+console.log(ropa)
