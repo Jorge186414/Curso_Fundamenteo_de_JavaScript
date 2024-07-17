@@ -41,3 +41,34 @@ const escapeAlternativo = "I'am Student of Sistemas Computaciones"
 const barraInvertida = 'I\'am Student of Sistemas Computaciones'
 // 3. Template Literals
 const templateLiterals = `I'am am Student of Sistemas Computaciones`
+
+// Strings primitivos
+const stringPrimitivo = "Hola, como te va"
+// stringPrimitivo = 'Bien'         // No se puede reasignar
+console.log(stringPrimitivo)
+
+// string objetos 
+const stringObjeto = new String('Soy mejor que el string primitivo')
+console.log(typeof stringObjeto)
+
+// Manipulacion de strings
+const saludo = 'Hola bicho, donde estabas?'
+console.log(saludo[3])
+console.log(saludo.charAt(3))
+console.log(saludo.indexOf('a'))
+console.log(saludo.indexOf('donde'))
+console.log(saludo.lastIndexOf('e'))
+console.log(saludo.slice(4, 9))
+console.log(saludo.length)
+console.log(saludo.toLocaleLowerCase())
+console.log(saludo.toLocaleUpperCase())
+
+const saludoDivido = saludo.split(' ')
+console.log(saludoDivido)
+
+const saludoConEspacios = ' Hola mundo, Otra vez '
+console.log(saludoConEspacios.trim())
+
+const saludoOriginal = 'Hola Mundo'
+const saludoCambiado = saludoOriginal.replace('Mundo', 'Jenni')
+console.log(saludoCambiado)
