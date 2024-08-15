@@ -1,3 +1,4 @@
+//! 1. Modificacion de atributos de HTML
 const input = document.querySelector('#input-id')
 console.log(input)  // nos devolvera el elemento de input
 console.dir(input)  // nos devolvera las propiedades del objeto input
@@ -14,3 +15,11 @@ console.log(input.value)  // Aqui nos imprime el valor inicial, declarado
 input.value = 'Nombre completo' 
 console.log(input.value)  // Ya que  modificamos el valor de la propieda, 
 // directamente con JavaScript ya no mostrara 'Nombre', mostrar 'Nombre completo'
+
+//! 2. Modificacion de texto en HTML
+const title = document.querySelector('#app-title')
+console.dir(title)
+title.textContent = 'Texto cambiado desde JavaScript' // Este y el metodo de abajo
+// si van a cambiar el texto que tiene esta etiqueta, dado que no es un
+// atributo de la etiqueta
+title.innerText = 'Otro titulo cambiado'
