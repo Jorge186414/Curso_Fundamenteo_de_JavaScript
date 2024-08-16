@@ -18,27 +18,32 @@ vamos a manipular con JavaScript
 
 //! 2. Modificacion de texto en HTML
 const title = document.querySelector('#app-title')
-console.dir(title)
-title.textContent = 'Texto cambiado desde JavaScript' // Este y el metodo de abajo
+//console.dir(title)
+//title.textContent = 'Texto cambiado desde JavaScript' // Este y el metodo de abajo
 // si van a cambiar el texto que tiene esta etiqueta, dado que no es un
 // atributo de la etiqueta
-title.innerText = 'Otro titulo cambiado'
+//title.innerText = 'Otro titulo cambiado'
 
 //! 3. Modificacion de estilos
 // 3.1 Propiedad .style: Agrega estilos en linea en la etiqueta del elemento.
 const title2 = document.querySelector('h1')
-title.style.color = 'red'
+//title.style.color = 'red'
 const menu = document.querySelector('.menu')
-menu.style.backgroundColor = 'pink'
-menu.style.fontSize = '25px'
+//menu.style.backgroundColor = 'pink'
+//menu.style.fontSize = '25px'
 
 // 3.2 className: Nos ayuda a acceder a la clase ya existente de un elemento,
 // y una vez que accede reescribe la clase del elemento por una nueva
-menu.className = 'main-menu'
+//menu.className = 'main-menu'
 
 // 3.2 classList: Nos permite acceder a las clases de un elemento
 // y agregar nuevas clases sin reescribir las clases ya existentes
 const button = document.querySelector('button')
+/*
 button.addEventListener('click', () => {
-  menu.classList.toggle('invisible')  // con este metodo vamos a alternar la presencia de una clase
+//  menu.classList.toggle('invisible')  // con este metodo vamos a alternar la presencia de una clase
 })
+*/
+
+//! 4. Creating and Removing elements
+// 4.1 HTMLStrings
