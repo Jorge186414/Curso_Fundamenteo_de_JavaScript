@@ -46,4 +46,15 @@ button.addEventListener('click', () => {
 */
 
 //! 4. Creating and Removing elements
-// 4.1 HTMLStrings
+// 4.1 HTMLStrings: Cadenas de texto que utilizamos  que posteriormente 
+// podemos inyectar en el DOM con ayuda de CreateElements
+// 4.1.1. innerHTML: Genera e inyecta el elemento en el DOM, reemplazando el texto
+// ya existe
+const contentArea = document.getElementById('contentArea')
+contentArea.innerHTML = '<p>Este es un nuevo parrafo inyectado.</p>'
+// 4.1.2. insertAdjacentHTML: Hace lo mismo solo que nos deja decirir
+// en que parte del DOM inyectar el elemento, sin reemplazar lo existente
+contentArea.insertAdjacentHTML('beforeend', '<p>Este es otro parrafo sin que se reemplace uno</p>')
+contentArea.insertAdjacentHTML('beforebegin', '<p>Parrafo con beforebegin</p>')
+contentArea.insertAdjacentText('afterbegin','<p>Parrafo con afterbegin</p>')
+contentArea.insertAdjacentHTML('afterend','<p>Parrafo con afterend</p>')
