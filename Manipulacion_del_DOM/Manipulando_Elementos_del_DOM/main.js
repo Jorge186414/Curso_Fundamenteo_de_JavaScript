@@ -56,5 +56,14 @@ contentArea.innerHTML = '<p>Este es un nuevo parrafo inyectado.</p>'
 // en que parte del DOM inyectar el elemento, sin reemplazar lo existente
 contentArea.insertAdjacentHTML('beforeend', '<p>Este es otro parrafo sin que se reemplace uno</p>')
 contentArea.insertAdjacentHTML('beforebegin', '<p>Parrafo con beforebegin</p>')
-contentArea.insertAdjacentText('afterbegin','<p>Parrafo con afterbegin</p>')
-contentArea.insertAdjacentHTML('afterend','<p>Parrafo con afterend</p>')
+contentArea.insertAdjacentText('afterbegin', '<p>Parrafo con afterbegin</p>')
+contentArea.insertAdjacentHTML('afterend', '<p>Parrafo con afterend</p>')
+// 4.2. Creacion de elementos sin reemplazar
+// 4.2.1 innerHTML: De esta forma no reemplaza algo ya existente,
+// insertando sin alterar, el problema es que al hacer esto vuelve a renderizar todo elemento padre,
+// alterando el performance
+const listArea = document.getElementById('listArea')
+listArea.innerHTML += ('<li>item 5</li>')
+// 4.2.2. insertAdjacentHTML: Cumple la misma funcion que el 4.1.2, solo que no estaria
+// renderizando al elemento padre
+listArea.insertAdjacentHTML('beforeend', '<li>item 6</li>')
