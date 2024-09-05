@@ -48,22 +48,36 @@ button.addEventListener('click', () => {
 //! 4. Creating and Removing elements
 // 4.1 HTMLStrings: Cadenas de texto que utilizamos  que posteriormente 
 // podemos inyectar en el DOM con ayuda de CreateElements
+
 // 4.1.1. innerHTML: Genera e inyecta el elemento en el DOM, reemplazando el texto
 // ya existe
 const contentArea = document.getElementById('contentArea')
 contentArea.innerHTML = '<p>Este es un nuevo parrafo inyectado.</p>'
+
 // 4.1.2. insertAdjacentHTML: Hace lo mismo solo que nos deja decirir
 // en que parte del DOM inyectar el elemento, sin reemplazar lo existente
 contentArea.insertAdjacentHTML('beforeend', '<p>Este es otro parrafo sin que se reemplace uno</p>')
 contentArea.insertAdjacentHTML('beforebegin', '<p>Parrafo con beforebegin</p>')
 contentArea.insertAdjacentText('afterbegin', '<p>Parrafo con afterbegin</p>')
 contentArea.insertAdjacentHTML('afterend', '<p>Parrafo con afterend</p>')
+
 // 4.2. Creacion de elementos sin reemplazar
 // 4.2.1 innerHTML: De esta forma no reemplaza algo ya existente,
 // insertando sin alterar, el problema es que al hacer esto vuelve a renderizar todo elemento padre,
 // alterando el performance
 const listArea = document.getElementById('listArea')
 listArea.innerHTML += ('<li>item 5</li>')
+
 // 4.2.2. insertAdjacentHTML: Cumple la misma funcion que el 4.1.2, solo que no estaria
 // renderizando al elemento padre
 listArea.insertAdjacentHTML('beforeend', '<li>item 6</li>')
+// 4.3 createElements: Nos perite el crear elementos sin influuir en el rendimiento de nuestra pagina
+// esto se puede hacer en cualquier parte del DOM
+const newPElement = document.createElement('p') // 1. Crear el elemento que quearmos inyectar
+newPElement.textContent = 'Fui creado con createElement'  // 2. Darle texto o contenido al elemento
+contentArea.append(newPElement) // 3. Declarar una variable para el contenedor en donde queramos inyectar el elemento e inyectarlo
+const newItem = document.createElement('li')
+newItem.textContent = 'item 7'
+listArea.prepend(newItem) // Pondra al elemento al principio del contenedor o elemento padre
+listArea.before(newItem)  // Pondra al elemento antes del elemento padre, es decir, fuera de la lista en este caso, pero no clona, solo mueve el elemento
+listArea.after(newItem) // Es parecido a before, solo pondra el elemento despues del padre, siendo hermano de los items dentro del padre.
