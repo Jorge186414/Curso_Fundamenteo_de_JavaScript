@@ -81,3 +81,22 @@ newItem.textContent = 'item 7'
 listArea.prepend(newItem) // Pondra al elemento al principio del contenedor o elemento padre
 listArea.before(newItem)  // Pondra al elemento antes del elemento padre, es decir, fuera de la lista en este caso, pero no clona, solo mueve el elemento
 listArea.after(newItem) // Es parecido a before, solo pondra el elemento despues del padre, siendo hermano de los items dentro del padre.
+
+// 4.4. Eliminacion de elementos
+// 4.4.1. Eliminacion con querySelector
+const firstItem = document.querySelector('li')  // Seleccionara al primer elemento li
+firstItem.remove()  // Con el metodo remove, eliminara la elemento previamente seleccionado
+const list = document.querySelector('ul') // Hace algo paracido, solo que ahora primero buscara un elemento ul, para despues eliminar a un hijo
+list.removeChild(list.firstChild)  // Ya que seleccionamos a un elemento padre, dependiendo que metodo tomemos, ya sea el primero o ultimo hijo
+
+// 4.5. Clonacion y reemplazo de elementos
+// 4.5.1. cloneNode()
+const section = document.querySelector('#contentArea')  // 1. Seleccionamos el contenedor donde esta el elemento que queramos clonar
+const elementoOriginal = section.querySelector('p') // 2. Seleccionamos el elemento que queremos clonar dentro del contenedor
+const elementoClonado = elementoOriginal.cloneNode(true)  // 3. Clonamos el elemento con cloneNode()
+section.append(elementoClonado) // 4. Inyectamos el elemento en el DOM
+elementoClonado.textContent = 'Texto cambiado del elemento clonado' // 4. Ya que el elemento esta en el DOM, podemos cambiar su contenido
+// 4.5.1. replaceWith()
+const lista = document.querySelector('#listArea') // 1. Seleccionamos el elemento padre donde queramos reeemplazar
+const itemToReplace = lista.children[2] // 2. Seleccionamos el elemento hijo del padre que queramos reemplazar
+itemToReplace.replaceWith(elementoClonado)  // 3. Reemplazamos el elemento con replaceWith
