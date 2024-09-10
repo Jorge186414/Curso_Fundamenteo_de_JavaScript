@@ -2,25 +2,30 @@
 const taskForm = document.getElementById('task-form')
 const taskList = document.getElementById('task-list')
 
+//! Cargamos lo que tenemos guardado en localStorage
+loadTask()
+
 //! Agregar evento al formulario para que se manden los datos de este
 taskForm.addEventListener('submit', (event) => {
   event.preventDefault()
 
   // Obtenemos el input para el task y recuperamos el valor de esta
   const taskInput = document.getElementById('task-input')
-  const task = taskInput.value
+  const task = taskInput.value.trim()
 
   // Validacion de la tarea
   if (task) {
     // Si la tarea existe, se agrega a a lista de tareas con la funcion createTaskElement
     taskList.append(createTaskElement(task))
+    // Almanenar la tarea en localStorage
+    storeTaskInLocalStorage(task)
     // Se limpia el valor de input despues de agregar la tarea
     taskInput.value = ''
   }
 })
 
 //! Funcion para agregar la tarea a la lista
-const createTaskElement = task => {
+function createTaskElement(task) {
   // Se crea un item en la lista tareas
   const li = document.createElement('li')
   // Pasamos la tarea del formulario al texto del elemento creado
@@ -32,7 +37,7 @@ const createTaskElement = task => {
 }
 
 //! Funcion que se encarga de crear los botones de eliminar y editar
-const createButton = (text, className) => {
+function createButton(text, className) {
   // Creamos un elemento en nuestro HTML
   const btn = document.createElement('span')
   // Como texto y nombre de clase asignamos el valor correspondiente que recibimos 
@@ -65,4 +70,22 @@ const editTask = taskItem => {
   if (newTask !== null) {
     taskItem.firstChild.textContent = newTask
   }
+}
+
+//! Persistencia de los datos con localStorage con una web api
+const storeTaskInLocalStorage = task => {
+  // Creamos una variable para las tareas, las parsearemos a un archivo JSON
+  // primero obetenemos lo que hay en el el localStorage.
+  // Y si no hay nada lo almacenamos en un array vacio
+  const tasks = JSON.parse(localStorage.getItem('tasks') || '[]')
+  // Mandamos la nueva tarea al localStorage
+  tasks.push(task)
+  localStorage.setItem('tasks', JSON.stringify(tasks))
+}
+
+function loadTask() {
+  const tasks = JSON.parse(localStorage.getItem('tasks') || '[]')
+  tasks.forEach(task => {
+    taskList.appendChild(createTaskElement(task))
+  })
 }
