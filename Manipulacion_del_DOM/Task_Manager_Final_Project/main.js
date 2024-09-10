@@ -129,3 +129,32 @@ const removeFromLocaStorage = (taskContent) => {
   // Seteamos la actualizacion en el localStorage
   localStorage.setItem('tasks', JSON.stringify(updateTasks))
 }
+
+//! Cambio de tema 
+// Recuperamos el boton
+const themeToogleButton = document.getElementById('toggle-theme-btn')
+
+// Recuperamos el tema actual almacenado en el localStorage
+const currentTheme = localStorage.getItem('theme')
+
+// Agregamos un evento de clic al boton
+themeToogleButton.addEventListener('click', () => {
+  // Alternamos entre clases, si la tiene la va a eliminar
+  // y si no la tiene la va a agregar
+  document.body.classList.toggle('dark-theme')
+
+  // Validamos la clase que tiene el body
+  const theme = document.body.classList.contains('dark-theme')
+    ? 'dark'  // si tiene dark-theme guardamos dark
+    : 'light' // en caso contrario guardamos ligh
+
+  // Seteamos esta nueva variable en el localStorag 
+  localStorage.setItem('theme', theme)
+})
+
+//! Validacion del tema
+// Si currentTheme es igual en valor y tipo a dark
+if (currentTheme === 'dark') {
+  // Agregamos al body la clase dark-theme, para mantener la persistencia del tema
+  document.body.classList.add('dark-theme')
+}
