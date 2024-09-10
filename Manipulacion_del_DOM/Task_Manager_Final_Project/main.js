@@ -69,6 +69,7 @@ const editTask = taskItem => {
   const newTask = prompt('Edita la tarea: ', taskItem.firstChild.textContent)
   if (newTask !== null) {
     taskItem.firstChild.textContent = newTask
+    updateLocalStorage()
   }
 }
 
@@ -88,4 +89,15 @@ function loadTask() {
   tasks.forEach(task => {
     taskList.appendChild(createTaskElement(task))
   })
+}
+
+//! Eliminacion y edicion en el localStorage
+const updateLocalStorage = () => {
+  // Para obtener el nuevo cambio, primero obtenemos todo lo que tenga una etique
+  // li en nuestra liesta de tareas, una vez obtenidos vamos a obtener el texto del
+  // primer elemento del li, y todo esto lo vamos a pasar a un array con Array.from()
+  const tasks = Array.from(taskList.querySelectorAll('li')).map((li) => li.firstChild.textContent)
+  
+  // Empujar esto al localStorage para que almacene el cambio
+  localStorage.setItem('tasks', JSON.stringify(tasks))
 }
