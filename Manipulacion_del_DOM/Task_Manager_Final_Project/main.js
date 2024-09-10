@@ -26,13 +26,13 @@ const createTaskElement = task => {
   // Pasamos la tarea del formulario al texto del elemento creado
   li.textContent = task
   // Creamos y agregamos un boton para borrar o editar la tarea
-  li.append(createButton('❌'), 'delete-btn'), createButton('✏️', 'edit-btn')
+  li.append(createButton('❌', 'delete-btn'), createButton('✏️', 'edit-btn'))
   // retornamos el item que acabamos de crear
   return li
 }
 
 //! Funcion que se encarga de crear los botones de eliminar y editar
-const createButton = (text, className) =>{
+const createButton = (text, className) => {
   // Creamos un elemento en nuestro HTML
   const btn = document.createElement('span')
   // Como texto y nombre de clase asignamos el valor correspondiente que recibimos 
@@ -41,4 +41,28 @@ const createButton = (text, className) =>{
   btn.className = className
   // Retornamos el elemento creado
   return btn
+}
+
+//! Uso de delegacion de evento para los botones de editar y borrar
+taskList.addEventListener('click', (event) => {
+  if (event.target.classList.contains('delete-btn')) {
+    deleteTask(event.target.parentElement)
+  } else if (event.target.classList.contains('edit-btn')) {
+    editTask(event.target.parentElement)
+  }
+})
+
+//! Funcion para borrar un elemento, lo que equivale a borrar una tarea
+const deleteTask = taskItem => {
+  if (confirm('Segur@ que deseas borrar la tarea?')) {
+    taskItem.remove()
+  }
+}
+
+//! Funcion para editar el elemento
+const editTask = taskItem => {
+  const newTask = prompt('Edita la tarea: ', taskItem.firstChild.textContent)
+  if (newTask !== null) {
+    taskItem.firstChild.textContent = newTask
+  }
 }
